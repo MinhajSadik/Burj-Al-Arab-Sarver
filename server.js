@@ -44,14 +44,13 @@ app.post("/addBooking", (req, res) => {
   bookings.insertOne(newBooking).then((result) => {
     res.send(result.insertedCount > 0);
   });
-  console.log(newBooking);
 });
 
 app.get("/booking", (req, res) => {
   const bearer = req.headers.authorization;
   if (bearer && bearer.startsWith("Bearer ")) {
     const idToken = bearer.split(" ")[1];
-    console.log("Bearer:" + bearer);
+    console.log("Bearer:", bearer);
     admin
       .auth()
       .verifyIdToken(idToken)
